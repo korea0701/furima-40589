@@ -55,4 +55,4 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  url: <%= ENV['DATABASE_URL'] %>bundle exec puma -C config/puma.rb
+  url: <%= ENV['DATABASE_URL'] %>

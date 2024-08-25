@@ -33,31 +33,31 @@ RSpec.describe Item, type: :model do
     it 'category_idが1だと保存できない' do
       @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category Please select")
+      expect(@item.errors.full_messages).to include('Category Please select')
     end
 
     it 'condition_idが1だと保存できない' do
       @item.condition_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Condition Please select")
+      expect(@item.errors.full_messages).to include('Condition Please select')
     end
 
     it 'shipping_fee_idが1だと保存できない' do
       @item.shipping_fee_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping fee Please select")
+      expect(@item.errors.full_messages).to include('Shipping fee Please select')
     end
 
     it 'prefecture_idが1だと保存できない' do
       @item.prefecture_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Prefecture Please select")
+      expect(@item.errors.full_messages).to include('Prefecture Please select')
     end
 
     it 'shipping_day_idが1だと保存できない' do
       @item.shipping_day_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping day Please select")
+      expect(@item.errors.full_messages).to include('Shipping day Please select')
     end
 
     it 'priceが空では保存できない' do

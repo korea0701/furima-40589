@@ -46,9 +46,7 @@ class ItemsController < ApplicationController
   end
 
   def check_item_owner
-    return if current_user == @item.user
-
-    redirect_to root_path
+    redirect_to root_path unless current_user == @item.user
   end
 
   def item_params

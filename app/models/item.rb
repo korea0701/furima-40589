@@ -2,8 +2,12 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   belongs_to :user
-  # has_one :order
+  has_one :order
   has_one_attached :image
+
+  def sold_out?
+    order.present?
+  end
 
   belongs_to :category
   belongs_to :condition

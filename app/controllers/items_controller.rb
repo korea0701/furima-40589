@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :check_item_owner, only: [:edit, :update, :destroy]
+  before_action :redirect_if_sold_out, only: [:edit, :update]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -46,12 +47,15 @@ class ItemsController < ApplicationController
   end
 
   def check_item_owner
-    return if current_user == @item.user
+    redirect_to root_path unless current_user == @item.user
+  end
 
-    redirect_to root_path
+  def redirect_if_sold_out
+    redirect_to root_path if @item.order.present?
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :category_id, :condition_id, :shipping_fee_id, :prefecture_id, :shipping_day_id, :price, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :description, :category_id, :condition_id, :shipping_fee_id, :prefecture_id,
+                                 :shipping_day_id, :price, :image).merge(user_id: current_user.id)
   end
 end
